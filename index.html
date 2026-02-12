@@ -17,7 +17,7 @@
       --muted: #b1bdcb;
       --line: rgba(255,255,255,0.10);
 
-      /* More grounded, less “template/tech demo” */
+      /* Grounded, institutional palette */
       --accent: #3A6B5F;
       --accent2: #8FAF9E;
 
@@ -45,25 +45,21 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      padding: 10px 0 26px;
+      padding: 10px 0 22px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-weight: 700;
       letter-spacing: 0.2px;
     }
 
-    /* Fallback mark if you haven’t uploaded a logo yet */
-    .mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(58,107,95,0.95), rgba(143,175,158,0.85));
-      box-shadow: 0 10px 30px rgba(58,107,95,0.18);
-      flex: 0 0 auto;
+    .logo{
+      height: 38px;
+      width: auto;
+      display: block;
     }
 
     .ctaRow { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
@@ -88,17 +84,6 @@
     }
     .btnPrimary:hover { background: rgba(58,107,95,0.26); }
 
-    .hero {
-      padding: 22px 0 18px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 16px;
-    }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .ctaRow { justify-content: flex-start; }
-    }
-
     .panel {
       background: rgba(20,26,34,0.95);
       border: 1px solid var(--line);
@@ -106,30 +91,44 @@
       padding: 18px;
     }
 
+    /* Full-width hero banner image */
+    .heroBanner{
+      height: 250px;
+      margin: 6px 0 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(11,15,20,0.10), rgba(11,15,20,0.78)),
+        url("hero.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .ctaRow { justify-content: flex-start; }
+      .heroBanner { height: 210px; }
+    }
+
     h1 {
       margin: 0 0 10px;
       font-size: clamp(28px, 3.8vw, 44px);
       line-height: 1.08;
       letter-spacing: -0.6px;
+      font-weight: 700;
     }
 
     .sub {
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       color: var(--muted);
       font-size: 16px;
-      max-width: 66ch;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(58,107,95,0.50);
-      background: rgba(58,107,95,0.12);
-      color: rgba(232,238,246,0.98);
-      font-weight: 650;
+      max-width: 70ch;
     }
 
     .bullets {
@@ -160,6 +159,7 @@
       margin: 0 0 12px;
       font-size: 18px;
       letter-spacing: -0.2px;
+      font-weight: 700;
     }
 
     .cardGrid {
@@ -250,12 +250,7 @@
   <div class="wrap">
     <div class="top">
       <div class="brand">
-        <!-- LOGO OPTION:
-             Once you upload your logo, replace the <div class="mark"> with:
-             <img src="logo.png" alt="Northfield Assets" style="height:36px;">
-        -->
-        <div class="mark" aria-hidden="true"></div>
-        <div>Northfield Assets</div>
+        <img class="logo" src="northfield-assets-logo.png" alt="Northfield Assets logo">
       </div>
 
       <div class="ctaRow">
@@ -264,38 +259,40 @@
       </div>
     </div>
 
+    <!-- Header image (upload a file named hero.jpg to your repo) -->
+    <div class="heroBanner" role="img" aria-label="Well-maintained residential community exterior"></div>
+
     <div class="hero">
       <div class="panel">
-        <h1>Know what’s happening across your properties, without being everywhere yourself.</h1>
+        <h1>When you manage multiple properties, uncertainty becomes risk. We reduce that risk.</h1>
         <p class="sub">
           Northfield Assets provides independent, routine on-site visibility between inspections so small issues
-          don’t become expensive surprises. We verify agreed common areas on a set cadence, document with timestamped photos,
-          and flag exceptions through an agreed channel.
+          don’t become expensive surprises. We verify agreed common areas on a set cadence and document with timestamped photos.
         </p>
-
-        <div class="pill">Silence means conditions appear within normal range.</div>
 
         <ul class="bullets">
           <li><span class="dot" aria-hidden="true"></span><span>Built for regional and portfolio managers overseeing multiple assets.</span></li>
-          <li><span class="dot" aria-hidden="true"></span><span>Consistent documentation supports clearer owner updates and faster decisions.</span></li>
-          <li><span class="dot" aria-hidden="true"></span><span>Low friction: exceptions only, no noise, no extra management overhead.</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Clear, consistent documentation for faster decisions and cleaner owner updates.</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Low friction: exceptions only, no noise, no additional management overhead.</span></li>
         </ul>
       </div>
 
       <div class="panel">
-        <div class="sectionTitle">Why it matters</div>
+        <div class="sectionTitle">Why managers choose independent visibility</div>
         <div class="cardGrid" style="grid-template-columns: 1fr; margin-top: 0;">
           <div class="card">
             <h3>Reduce blind spots</h3>
-            <p>Between inspections, conditions can drift quietly. We keep a consistent eye on the basics that drive complaints and scrutiny.</p>
+            <p>Between inspections, conditions drift quietly. We provide consistent on-site visibility so small issues don’t stack up unnoticed.</p>
           </div>
+
           <div class="card" style="margin-top: 10px;">
-            <h3>Fewer surprises</h3>
-            <p>Issues are easiest to address when they’re small. Our role is to make them visible early, with evidence.</p>
+            <h3>Avoid preventable surprises</h3>
+            <p>Most problems are manageable when seen early. Routine verification gives you evidence before complaints, inspections, or owner questions escalate.</p>
           </div>
+
           <div class="card" style="margin-top: 10px;">
-            <h3>Stronger oversight</h3>
-            <p>You can’t be on every site. We provide the routine presence that helps you manage with confidence.</p>
+            <h3>Operate with clarity</h3>
+            <p>When you can’t be everywhere, assumptions creep in. We give you consistent documentation so decisions and communications are grounded in reality.</p>
           </div>
         </div>
       </div>
@@ -336,7 +333,7 @@
           <div class="num">4</div>
           <div>
             <strong>Exceptions only</strong>
-            <div class="small">If something stands out, we flag it through the agreed channel. If not, no noise.</div>
+            <div class="small">If something stands out, we flag it through the agreed process. If not, no noise.</div>
           </div>
         </div>
       </div>

@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Northfield Assets | Independent Property Condition Verification</title>
-  <meta name="description" content="Independent, routine on-site verification of common-area conditions between inspections. Fewer surprises for portfolio and regional managers." />
+  <title>Northfield Assets | Independent Property Visibility</title>
+  <meta name="description" content="Independent, routine on-site visibility between inspections. Reduce surprises across your property portfolio." />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #0b0f14;
-      --card: #111824;
-      --text: #e7edf5;
-      --muted: #a9b6c7;
+      --card: #141a22;
+      --text: #e8eef6;
+      --muted: #b1bdcb;
       --line: rgba(255,255,255,0.10);
-      --accent: #5aa7ff;
-      --accent2: #6ee7b7;
+
+      /* More grounded, less “template/tech demo” */
+      --accent: #3A6B5F;
+      --accent2: #8FAF9E;
+
       --radius: 16px;
       --max: 980px;
     }
@@ -22,10 +28,11 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(90,167,255,0.20), transparent 60%),
-                  radial-gradient(900px 500px at 90% 0%, rgba(110,231,183,0.16), transparent 55%),
-                  var(--bg);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(900px 520px at 20% -10%, rgba(58,107,95,0.18), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(143,175,158,0.14), transparent 55%),
+        var(--bg);
       color: var(--text);
       line-height: 1.45;
     }
@@ -45,16 +52,17 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: 0.2px;
     }
 
+    /* Fallback mark if you haven’t uploaded a logo yet */
     .mark {
       width: 34px;
       height: 34px;
       border-radius: 10px;
-      background: linear-gradient(135deg, rgba(90,167,255,0.95), rgba(110,231,183,0.85));
-      box-shadow: 0 10px 30px rgba(90,167,255,0.18);
+      background: linear-gradient(135deg, rgba(58,107,95,0.95), rgba(143,175,158,0.85));
+      box-shadow: 0 10px 30px rgba(58,107,95,0.18);
       flex: 0 0 auto;
     }
 
@@ -75,15 +83,15 @@
     .btn:active { transform: translateY(1px); }
 
     .btnPrimary {
-      background: rgba(90,167,255,0.16);
-      border-color: rgba(90,167,255,0.40);
+      background: rgba(58,107,95,0.20);
+      border-color: rgba(58,107,95,0.45);
     }
-    .btnPrimary:hover { background: rgba(90,167,255,0.22); }
+    .btnPrimary:hover { background: rgba(58,107,95,0.26); }
 
     .hero {
       padding: 22px 0 18px;
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 16px;
     }
     @media (max-width: 900px) {
@@ -92,25 +100,36 @@
     }
 
     .panel {
-      background: rgba(17,24,36,0.82);
+      background: rgba(20,26,34,0.95);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 18px;
-      backdrop-filter: blur(6px);
     }
 
     h1 {
       margin: 0 0 10px;
       font-size: clamp(28px, 3.8vw, 44px);
       line-height: 1.08;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.6px;
     }
 
     .sub {
       margin: 0 0 16px;
       color: var(--muted);
       font-size: 16px;
-      max-width: 62ch;
+      max-width: 66ch;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(58,107,95,0.50);
+      background: rgba(58,107,95,0.12);
+      color: rgba(232,238,246,0.98);
+      font-weight: 650;
     }
 
     .bullets {
@@ -137,32 +156,39 @@
       flex: 0 0 auto;
     }
 
-    .grid {
+    .sectionTitle {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    .cardGrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .cardGrid { grid-template-columns: 1fr; } }
+
+    .card {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+    }
 
     .card h3 {
       margin: 0 0 6px;
-      font-size: 14px;
-      letter-spacing: 0.2px;
+      font-size: 13px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
-      color: rgba(231,237,245,0.92);
+      color: rgba(232,238,246,0.92);
     }
 
     .card p {
       margin: 0;
       color: var(--muted);
       font-size: 15px;
-    }
-
-    .sectionTitle {
-      margin: 28px 0 10px;
-      font-size: 18px;
-      letter-spacing: -0.2px;
     }
 
     .how {
@@ -191,13 +217,17 @@
       justify-content: center;
       font-weight: 800;
       color: rgba(11,15,20,0.95);
-      background: linear-gradient(135deg, rgba(90,167,255,0.95), rgba(110,231,183,0.85));
+      background: linear-gradient(135deg, rgba(58,107,95,0.95), rgba(143,175,158,0.85));
       flex: 0 0 auto;
     }
 
-    .step strong { display: block; margin-bottom: 4px; }
+    .small {
+      font-size: 13px;
+      color: rgba(177,189,203,0.92);
+    }
+
     .footer {
-      margin-top: 26px;
+      margin-top: 18px;
       padding-top: 16px;
       border-top: 1px solid var(--line);
       color: var(--muted);
@@ -208,21 +238,10 @@
       font-size: 14px;
     }
 
-    .small {
-      font-size: 13px;
-      color: rgba(169,182,199,0.9);
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(90,167,255,0.35);
-      background: rgba(90,167,255,0.10);
-      color: rgba(231,237,245,0.96);
-      font-weight: 650;
+    .fineprint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(177,189,203,0.80);
     }
   </style>
 </head>
@@ -231,6 +250,10 @@
   <div class="wrap">
     <div class="top">
       <div class="brand">
+        <!-- LOGO OPTION:
+             Once you upload your logo, replace the <div class="mark"> with:
+             <img src="logo.png" alt="Northfield Assets" style="height:36px;">
+        -->
         <div class="mark" aria-hidden="true"></div>
         <div>Northfield Assets</div>
       </div>
@@ -243,35 +266,36 @@
 
     <div class="hero">
       <div class="panel">
-        <h1>Independent, routine visibility into property conditions between inspections.</h1>
+        <h1>Know what’s happening across your properties, without being everywhere yourself.</h1>
         <p class="sub">
-          We verify agreed common areas on a set cadence, document with timestamped photos, and flag exceptions through an agreed channel.
-          Fewer surprises. Clearer oversight.
+          Northfield Assets provides independent, routine on-site visibility between inspections so small issues
+          don’t become expensive surprises. We verify agreed common areas on a set cadence, document with timestamped photos,
+          and flag exceptions through an agreed channel.
         </p>
 
         <div class="pill">Silence means conditions appear within normal range.</div>
 
         <ul class="bullets">
-          <li><span class="dot" aria-hidden="true"></span><span>Designed for regional and portfolio managers overseeing multiple assets.</span></li>
-          <li><span class="dot" aria-hidden="true"></span><span>Not property management. Not repairs. Not emergency response.</span></li>
-          <li><span class="dot" aria-hidden="true"></span><span>A simple, objective record of what was observed on a specific date.</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Built for regional and portfolio managers overseeing multiple assets.</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Consistent documentation supports clearer owner updates and faster decisions.</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Low friction: exceptions only, no noise, no extra management overhead.</span></li>
         </ul>
       </div>
 
       <div class="panel">
-        <div class="sectionTitle">Pilot focus</div>
-        <div class="grid" style="grid-template-columns: 1fr; margin-top: 10px;">
+        <div class="sectionTitle">Why it matters</div>
+        <div class="cardGrid" style="grid-template-columns: 1fr; margin-top: 0;">
           <div class="card">
-            <h3>Start small</h3>
-            <p>1 to 2 properties, founder-led, defined scope, weekly cadence.</p>
+            <h3>Reduce blind spots</h3>
+            <p>Between inspections, conditions can drift quietly. We keep a consistent eye on the basics that drive complaints and scrutiny.</p>
           </div>
           <div class="card" style="margin-top: 10px;">
-            <h3>Simple output</h3>
-            <p>Timestamped photos stored consistently. Exceptions flagged only.</p>
+            <h3>Fewer surprises</h3>
+            <p>Issues are easiest to address when they’re small. Our role is to make them visible early, with evidence.</p>
           </div>
           <div class="card" style="margin-top: 10px;">
-            <h3>Clear next step</h3>
-            <p>15-minute call to confirm fit and set an agreed walk path.</p>
+            <h3>Stronger oversight</h3>
+            <p>You can’t be on every site. We provide the routine presence that helps you manage with confidence.</p>
           </div>
         </div>
       </div>
@@ -279,6 +303,10 @@
 
     <div class="panel">
       <div class="sectionTitle">How it works</div>
+      <div class="small" style="margin-bottom: 12px;">
+        Simple, consistent oversight. Exceptions only. No extra management required.
+      </div>
+
       <div class="how">
         <div class="step">
           <div class="num">1</div>
@@ -299,8 +327,8 @@
         <div class="step">
           <div class="num">3</div>
           <div>
-            <strong>Evidence, not opinions</strong>
-            <div class="small">Timestamped photos stored in a shared folder accessible to managers.</div>
+            <strong>Timestamped documentation</strong>
+            <div class="small">Photos are stored consistently in a shared folder accessible to managers.</div>
           </div>
         </div>
 
@@ -316,19 +344,33 @@
 
     <div class="panel" style="margin-top: 12px;">
       <div class="sectionTitle">Who this is for</div>
-      <div class="grid">
+      <div class="cardGrid">
         <div class="card">
           <h3>Multi-property oversight</h3>
           <p>Regional and portfolio managers who cannot be everywhere at once.</p>
         </div>
         <div class="card">
           <h3>Lean staffing</h3>
-          <p>Teams that are competent but stretched, where gaps appear between visits.</p>
+          <p>Competent teams that are stretched, where gaps appear between visits.</p>
         </div>
         <div class="card">
           <h3>Scrutiny moments</h3>
-          <p>Sale, refinance, inspection cycles, reputation risk, or owner pressure.</p>
+          <p>Sale, refinance, inspection cycles, reviews, owner pressure, or recovery periods.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 12px;">
+      <div class="sectionTitle">Next step</div>
+      <div class="small" style="margin-bottom: 12px;">
+        If you oversee multiple properties and want more consistent visibility between inspections, book a short call.
+      </div>
+      <div class="ctaRow" style="justify-content: flex-start;">
+        <a class="btn btnPrimary" href="https://calendly.com/YOUR-LINK/15min" target="_blank" rel="noreferrer">Book 15 min</a>
+        <a class="btn" href="mailto:hello@northfieldassets.net">Email us</a>
+      </div>
+      <div class="fineprint">
+        Charlotte, NC. Founder-led onboarding. Limited initial slots to ensure consistency.
       </div>
     </div>
 
@@ -343,7 +385,7 @@
       </div>
       <div>
         <div><strong>Charlotte, NC</strong></div>
-        <div class="small">Founder-led pilots. Limited slots.</div>
+        <div class="small">Independent routine verification between inspections.</div>
       </div>
     </div>
   </div>

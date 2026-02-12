@@ -14,9 +14,12 @@
 --muted:#b1bdcb;
 --green:#5ABE96;
 --line:rgba(255,255,255,0.10);
+--soft:rgba(255,255,255,0.04);
 --radius:18px;
 --max:1040px;
 }
+
+*{box-sizing:border-box;}
 
 body{
 margin:0;
@@ -26,26 +29,33 @@ color:var(--text);
 line-height:1.45;
 }
 
+a{color:inherit;text-decoration:none;}
+
 .wrap{
 max-width:var(--max);
 margin:auto;
-padding:26px 18px 60px;
+padding:26px 18px 72px;
 }
 
 .top{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding-bottom:20px;
+gap:16px;
+padding-bottom:18px;
 }
 
 .logo{
-height:64px;
+height:240px;  /* big logo */
+width:auto;
+display:block;
 }
 
 .ctaRow{
 display:flex;
 gap:10px;
+flex-wrap:wrap;
+justify-content:flex-end;
 }
 
 .btn{
@@ -54,8 +64,7 @@ border-radius:14px;
 border:1px solid var(--line);
 background:rgba(255,255,255,0.04);
 font-weight:600;
-text-decoration:none;
-color:white;
+color:var(--text);
 }
 
 .btnPrimary{
@@ -64,144 +73,253 @@ border-color:rgba(90,190,150,0.45);
 }
 
 .heroBanner{
-height:260px;
+height:320px;
 border-radius:var(--radius);
-background:
-linear-gradient(rgba(11,15,20,.05),rgba(11,15,20,.35)),
-url("Hero-image-cutout.png");
+border:1px solid var(--line);
+/* No overlay. Pure image. */
+background:url("Hero-image-cutout.png");
 background-size:cover;
 background-position:center;
-margin-bottom:30px;
+margin:10px 0 28px;
 }
 
 .grid{
 display:grid;
-grid-template-columns:1.4fr .6fr;
-gap:24px;
+grid-template-columns:1.35fr .65fr;
+gap:28px;
+align-items:start;
 }
 
 @media(max-width:900px){
+.top{flex-direction:column;align-items:flex-start;}
+.ctaRow{justify-content:flex-start;}
+.logo{height:160px;}
+.heroBanner{height:220px;}
 .grid{grid-template-columns:1fr;}
-.heroBanner{height:200px;}
 }
 
 h1{
 font-size:40px;
 line-height:1.1;
 margin:0 0 12px;
+letter-spacing:-0.4px;
 }
 
-.green{
-color:var(--green);
-}
+.green{color:var(--green);}
 
 .lede{
 color:var(--muted);
 font-size:17px;
-max-width:720px;
+max-width:760px;
+margin:0 0 16px;
+}
+
+.keyline{
+color:rgba(232,238,246,0.92);
+font-weight:600;
+margin:12px 0 0;
 }
 
 .bullets{
-margin-top:20px;
+margin:18px 0 0;
 padding:0;
 list-style:none;
+display:grid;
+gap:10px;
 }
 
 .bullets li{
-margin-bottom:10px;
+display:flex;
+gap:10px;
+align-items:flex-start;
 color:var(--muted);
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:999px;
+margin-top:6px;
+background:var(--green);
+flex:0 0 auto;
 }
 
 .side h2{
 font-size:18px;
-margin-bottom:12px;
+margin:0 0 12px;
 }
 
 .sideBlock{
-margin-bottom:18px;
+padding:14px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.02);
+margin-bottom:12px;
+color:var(--muted);
 }
 
 .sideBlock strong{
 display:block;
-margin-bottom:4px;
+margin-bottom:6px;
+color:rgba(232,238,246,0.92);
+font-size:12px;
+letter-spacing:0.3px;
+text-transform:uppercase;
+}
+
+.section{
+margin-top:34px;
+padding-top:22px;
+border-top:1px solid var(--line);
+}
+
+.section h2{
+margin:0 0 12px;
+font-size:18px;
+}
+
+.faq{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:12px;
+}
+
+@media(max-width:900px){
+.faq{grid-template-columns:1fr;}
+}
+
+.faqItem{
+padding:14px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.02);
+}
+
+.faqItem strong{
+display:block;
+margin-bottom:6px;
+}
+
+.faqItem p{
+margin:0;
+color:var(--muted);
+font-size:14px;
 }
 
 .footer{
-margin-top:50px;
+margin-top:44px;
+padding-top:18px;
 border-top:1px solid var(--line);
-padding-top:20px;
 display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
+gap:10px;
 color:var(--muted);
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
 
 <div class="top">
-<img src="Northfield-Assets-logo.png" class="logo" alt="Northfield Assets">
+  <img src="Northfield-Assets-logo.png" class="logo" alt="Northfield Assets">
 
-<div class="ctaRow">
-<a href="mailto:hello@northfieldassets.net" class="btn">Email</a>
-<a href="#" class="btn btnPrimary">Book 15 min</a>
-</div>
+  <div class="ctaRow">
+    <a href="mailto:hello@northfieldassets.net" class="btn">Email</a>
+    <a href="https://calendly.com/YOUR-LINK/15min" class="btn btnPrimary" target="_blank" rel="noreferrer">Book 15 min</a>
+  </div>
 </div>
 
-<div class="heroBanner"></div>
+<div class="heroBanner" role="img" aria-label="Property exterior"></div>
 
 <div class="grid">
 
-<div>
-<h1>
-When you manage multiple properties, uncertainty becomes risk.
-<span class="green">We reduce that risk.</span>
-</h1>
+  <div>
+    <h1>
+      When you manage multiple properties, uncertainty becomes risk.
+      <span class="green">We reduce that risk.</span>
+    </h1>
 
-<p class="lede">
-Independent, routine on-site visibility between inspections.  
-So small issues are seen early before they become complaints, inspection findings, or costly surprises.
-</p>
+    <p class="lede">
+      Independent, routine on-site visibility between inspections.
+      So small issues are seen early before they become complaints, inspection findings, or costly surprises.
+    </p>
 
-<ul class="bullets">
-<li>Routine verification of agreed common areas</li>
-<li>Timestamped photo documentation for reference over time</li>
-<li>Exception-based communication so you get signal, not noise</li>
-</ul>
+    <div class="keyline">Designed for regional and portfolio managers overseeing multiple assets.</div>
+
+    <ul class="bullets">
+      <li><span class="dot" aria-hidden="true"></span><span>Routine verification of agreed common areas on a fixed cadence</span></li>
+      <li><span class="dot" aria-hidden="true"></span><span>Timestamped photo documentation stored consistently for easy reference</span></li>
+      <li><span class="dot" aria-hidden="true"></span><span>Exception-based communication so you get signal, not noise</span></li>
+    </ul>
+  </div>
+
+  <div class="side">
+    <h2>Why managers choose independent visibility</h2>
+
+    <div class="sideBlock">
+      <strong>Reduce blind spots</strong>
+      Between inspections, conditions drift quietly. Consistent visibility catches issues before they stack up.
+    </div>
+
+    <div class="sideBlock">
+      <strong>Avoid preventable surprises</strong>
+      Routine verification provides evidence before complaints, inspections, or owner questions escalate.
+    </div>
+
+    <div class="sideBlock">
+      <strong>Operate with clarity</strong>
+      When you cannot be everywhere, documentation keeps decisions grounded in reality.
+    </div>
+  </div>
+
 </div>
 
-<div class="side">
-<h2>Why managers choose independent visibility</h2>
+<div class="section">
+  <h2>FAQ</h2>
 
-<div class="sideBlock">
-<strong>Reduce blind spots</strong>
-Between inspections, conditions drift quietly. Consistent visibility catches issues early.
-</div>
+  <div class="faq">
+    <div class="faqItem">
+      <strong>What exactly do you do?</strong>
+      <p>We perform routine, independent walkthroughs of agreed common areas and document conditions with timestamped photos.</p>
+    </div>
 
-<div class="sideBlock">
-<strong>Avoid preventable surprises</strong>
-Routine verification provides evidence before complaints or inspections escalate.
-</div>
+    <div class="faqItem">
+      <strong>Is this a replacement for inspections?</strong>
+      <p>No. This fills the visibility gap between inspections and regional visits by creating consistent on-site documentation.</p>
+    </div>
 
-<div class="sideBlock">
-<strong>Operate with clarity</strong>
-When you cannot be everywhere, documentation keeps decisions grounded in reality.
-</div>
+    <div class="faqItem">
+      <strong>How do you handle issues you notice?</strong>
+      <p>We flag exceptions with evidence to the designated contact. We do not manage repairs, vendors, or emergencies.</p>
+    </div>
 
-</div>
+    <div class="faqItem">
+      <strong>Where does the documentation live?</strong>
+      <p>Photos are organized in a shared folder structure so managers can quickly reference current condition and trends over time.</p>
+    </div>
 
+    <div class="faqItem">
+      <strong>How long does a walkthrough take?</strong>
+      <p>Typically 20–45 minutes depending on property size and the agreed walk path.</p>
+    </div>
+
+    <div class="faqItem">
+      <strong>Who is this best for?</strong>
+      <p>Teams managing multiple properties with limited time, especially during scrutiny moments like sale, refinance, inspections, or recovery periods.</p>
+    </div>
+  </div>
 </div>
 
 <div class="footer">
-<div>Charlotte, NC</div>
-<div>Independent routine verification between inspections</div>
-<div>hello@northfieldassets.net</div>
+  <div><strong>Charlotte, NC</strong></div>
+  <div>hello@northfieldassets.net</div>
+  <div>Independent routine verification between inspections</div>
 </div>
 
 </div>
-
 </body>
 </html>

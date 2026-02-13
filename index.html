@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Northfield Assets</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -14,12 +14,15 @@
   --muted:#b1bdcb;
 
   --green:#5ABE96;
+  --mint:#91ffc5;
   --yellow:#F5C84B;
   --brown:#9A6B3B;
 
   --line:rgba(255,255,255,0.10);
   --radius:18px;
   --max:1040px;
+
+  --glow: 0 0 0 1px rgba(90,190,150,0.18), 0 0 24px rgba(90,190,150,0.14);
 }
 
 *{box-sizing:border-box;}
@@ -30,6 +33,7 @@ body{
   background:var(--bg);
   color:var(--text);
   line-height:1.45;
+  font-weight:300; /* thinner overall */
 }
 
 a{color:inherit;text-decoration:none;}
@@ -55,10 +59,13 @@ a{color:inherit;text-decoration:none;}
   gap:10px;
 }
 
+/* Logo: keep aspect ratio */
 .logo{
-  height:200px; /* slightly larger */
+  height:180px;
   width:auto;
+  object-fit:contain;
   display:block;
+  max-width:100%;
 }
 
 .contactLine{
@@ -66,12 +73,8 @@ a{color:inherit;text-decoration:none;}
   gap:14px;
   flex-wrap:wrap;
   color:rgba(232,238,246,0.90);
-  font-weight:600;
+  font-weight:500;
   font-size:14px;
-}
-
-.contactLine span{
-  color:rgba(232,238,246,0.90);
 }
 
 .ctaRow{
@@ -91,14 +94,16 @@ a{color:inherit;text-decoration:none;}
   border-radius:14px;
   border:1px solid var(--line);
   background:rgba(255,255,255,0.04);
-  font-weight:700;
+  font-weight:650;
   color:var(--text);
-  transition:transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+  cursor:pointer;
+  transition:transform 0.08s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover{
   background:rgba(255,255,255,0.06);
   border-color:rgba(255,255,255,0.18);
+  box-shadow: var(--glow);
 }
 
 .btn:active{ transform:translateY(1px); }
@@ -110,48 +115,77 @@ a{color:inherit;text-decoration:none;}
 
 .btnPrimary:hover{ background:rgba(90,190,150,0.24); }
 
-/* Hero image */
+/* Hero with overlay text */
 .heroBanner{
-  height:320px;
+  position:relative;
+  height:360px;
   border-radius:var(--radius);
   border:1px solid var(--line);
-  background:url("Hero-image-cutout.png");
+  background:url("Hero-image-cutout.png"); /* change filename later */
   background-size:cover;
   background-position:center;
-  margin:10px 0 24px;
+  overflow:hidden;
+  margin:10px 0 22px;
 }
 
-/* Hero text */
-h1{
-  font-size:40px;
-  line-height:1.1;
-  margin:0 0 10px;
+.heroOverlay{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  max-width:920px;
+}
+
+.heroCard{
+  display:inline-block;
+  padding:14px 16px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(11,15,20,0.50);
+  backdrop-filter: blur(6px);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.heroCard:hover{
+  box-shadow: var(--glow);
+  transform: translateY(-1px);
+}
+
+.heroTitle{
+  margin:0 0 6px;
+  font-size:36px;
+  line-height:1.08;
   letter-spacing:-0.4px;
+  font-weight:700;
+}
+
+.heroTitle .green{ color:var(--green); }
+
+.heroWhat{
+  margin:0 0 6px;
+  color:rgba(232,238,246,0.92);
+  font-size:16px;
+  font-weight:500;
 }
 
 .heroSub{
   margin:0;
-  color:var(--muted);
-  font-size:17px;
-  max-width:860px;
+  color:rgba(232,238,246,0.82);
+  font-size:14.8px;
+  max-width:780px;
+  font-weight:350;
 }
 
-.heroCallout{
-  margin:14px 0 0;
-  color:rgba(232,238,246,0.95);
-  font-weight:800;
-  font-size:18px;
-}
-
-.section{
-  margin-top:54px; /* more space between sections */
-}
+/* Sections */
+.section{ margin-top:54px; }
 
 .centerTitle{
   text-align:center;
-  font-size:26px; /* larger */
-  margin:22px 0 18px; /* dropped down */
+  font-size:26px;
+  margin:22px 0 18px;
   letter-spacing:-0.2px;
+  font-weight:650;
+  color:var(--green);
 }
 
 /* Stay prepared grid */
@@ -175,9 +209,16 @@ h1{
   border:1px solid rgba(255,255,255,0.08);
   background:rgba(255,255,255,0.02);
   color:rgba(232,238,246,0.92);
-  font-weight:700;
+  font-weight:550;
   text-align:center;
   min-height:56px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.prepGrid li:hover{
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+  border-color: rgba(90,190,150,0.35);
 }
 
 .prepGrid .check{
@@ -200,10 +241,10 @@ h1{
   grid-template-columns:1fr 1fr;
   gap:26px;
   align-items:start;
-  margin-top:28px; /* dropped down a line */
+  margin-top:30px;
 }
 
-/* Clipboard (no bubble) */
+/* Clipboard (angled) */
 .clipboardScene{
   display:flex;
   justify-content:center;
@@ -215,6 +256,12 @@ h1{
   max-width:520px;
   transform:rotate(-3deg);
   filter: drop-shadow(0px 18px 28px rgba(0,0,0,0.45));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.clipboard3d:hover{
+  filter: drop-shadow(0px 18px 28px rgba(0,0,0,0.45)) drop-shadow(0px 0px 18px rgba(90,190,150,0.12));
+  transform: rotate(-3deg) translateY(-2px);
 }
 
 .clipTop{
@@ -235,11 +282,11 @@ h1{
 
 .paperTitle{
   margin:0 0 12px;
-  font-weight:900;
+  font-weight:800;
   color:#111111;
   font-size:14px;
   letter-spacing:0.2px;
-  text-align:center; /* centered title */
+  text-align:center;
 }
 
 .paperList{
@@ -274,43 +321,55 @@ h1{
   margin-top:1px;
 }
 
-/* Why paper */
-.whyPaperWrap{
-  display:flex;
-  justify-content:center;
-}
-
-.whyPaper{
-  width:100%;
-  max-width:520px;
-  border-radius:14px;
-  background:#ffffff;
-  padding:16px 18px 18px;
-  color:#111111;
+/* Why it matters — card + fly-in + stamp */
+.whyWrap{
   position:relative;
-  filter: drop-shadow(0px 14px 22px rgba(0,0,0,0.35));
+  margin-top:10px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.10);
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  padding:18px 18px 18px;
+  overflow:hidden;
+
+  opacity:0;
+  transform: translateX(-24px);
+  transition: opacity 600ms ease, transform 600ms ease, box-shadow 250ms ease, border-color 250ms ease;
 }
 
-.whyTitle{
-  margin:0 0 10px;
-  font-size:16px;
-  font-weight:900;
-  color:#111111;
+.whyWrap.isVisible{
+  opacity:1;
+  transform: translateX(0px);
+}
+
+.whyWrap:hover{
+  box-shadow: var(--glow);
+  border-color: rgba(90,190,150,0.35);
 }
 
 .passStamp{
   position:absolute;
-  top:14px;
-  right:14px;
-  transform:rotate(14deg);
-  border:2px solid rgba(90,190,150,0.55);
-  color:rgba(90,190,150,0.55);
-  padding:6px 10px;
-  border-radius:10px;
+  right:16px;
+  top:18px;
+  transform: rotate(14deg);
+  border:2px solid rgba(90,190,150,0.78);
+  color:rgba(145,255,197,0.95);
+  padding:10px 12px;
+  border-radius:12px;
   font-weight:900;
   letter-spacing:2px;
-  font-size:12px;
   text-transform:uppercase;
+  background:rgba(90,190,150,0.08);
+  box-shadow: 0 0 18px rgba(90,190,150,0.12);
+  user-select:none;
+}
+
+.whyTitle{
+  margin:0 0 12px;
+  font-size:18px;
+  letter-spacing:-0.2px;
+  font-weight:700;
+  color:var(--green);
+  padding-right:110px;
 }
 
 .whyList{
@@ -318,24 +377,39 @@ h1{
   padding:0;
   list-style:none;
   display:grid;
-  gap:10px;
+  gap:12px;
 }
 
-.whyList li strong{
-  display:block;
-  font-size:12px;
-  letter-spacing:0.3px;
-  text-transform:uppercase;
-  margin-bottom:4px;
-  color:#111111;
+.whyItem{
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
-.whyList li{
-  color:#1a1a1a;
+.whyItem:hover{
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+  border-color: rgba(90,190,150,0.32);
+}
+
+.whyHead{
+  margin:0;
+  color:var(--green);
+  font-weight:650;
+  font-size:14.5px;
+}
+
+.whyBody{
+  margin:6px 0 0;
+  color:rgba(232,238,246,0.92);
+  font-weight:320;
   font-size:14px;
+  line-height:1.35;
 }
 
-/* FAQ grid 2 x 3 */
+/* FAQ grid */
 .faqGrid{
   margin-top:22px;
   display:grid;
@@ -348,20 +422,29 @@ h1{
   background:rgba(255,255,255,0.02);
   border-radius:16px;
   padding:14px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.faqItem:hover{
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+  border-color: rgba(90,190,150,0.28);
 }
 
 .faqItem strong{
   display:block;
   margin-bottom:6px;
-  color:rgba(232,238,246,0.92);
+  color:var(--green);
   font-size:14px;
+  font-weight:650;
 }
 
 .faqItem p{
   margin:0;
-  color:var(--muted);
+  color:rgba(232,238,246,0.88);
   font-size:13.5px;
   line-height:1.35;
+  font-weight:320;
 }
 
 /* Footer */
@@ -375,16 +458,127 @@ h1{
   font-size:14px;
 }
 
+/* Modal (Netlify form) */
+.modalBackdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:999;
+}
+
+.modalBackdrop.isOpen{ display:flex; }
+
+.modal{
+  width:min(640px, 100%);
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(11,15,20,0.92);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+  overflow:hidden;
+}
+
+.modalHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.modalHeader h3{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--green);
+  letter-spacing:-0.2px;
+}
+
+.iconBtn{
+  appearance:none;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.03);
+  color:rgba(232,238,246,0.9);
+  border-radius:12px;
+  padding:8px 10px;
+  cursor:pointer;
+  font-weight:800;
+  transition: box-shadow 0.2s ease, transform 0.08s ease, border-color 0.2s ease;
+}
+.iconBtn:hover{ box-shadow: var(--glow); border-color: rgba(90,190,150,0.35); }
+.iconBtn:active{ transform: translateY(1px); }
+
+.modalBody{ padding:16px; }
+
+.formGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+label{
+  font-size:12.5px;
+  color:rgba(232,238,246,0.82);
+  font-weight:550;
+}
+
+input, textarea{
+  width:100%;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.10);
+  background:rgba(255,255,255,0.03);
+  color:rgba(232,238,246,0.92);
+  padding:10px 12px;
+  outline:none;
+  font-family:"Inter", sans-serif;
+  font-weight:320;
+}
+
+input:focus, textarea:focus{
+  border-color: rgba(90,190,150,0.45);
+  box-shadow: var(--glow);
+}
+
+textarea{ min-height:92px; resize:vertical; grid-column:1/-1; }
+
+.modalActions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:12px;
+}
+
+.notice{
+  margin-top:10px;
+  font-size:13px;
+  color:rgba(232,238,246,0.78);
+  font-weight:320;
+}
+
+.notice strong{ color:var(--green); font-weight:650; }
+
 /* Responsive */
 @media(max-width:900px){
   .top{flex-direction:column; align-items:flex-start;}
   .ctaRow{justify-content:flex-start;}
-  .logo{height:160px;}
-  .heroBanner{height:220px;}
+  .heroBanner{height:260px;}
+  .heroTitle{font-size:28px;}
   .prepGrid{grid-template-columns:1fr;}
   .gridTwo{grid-template-columns:1fr;}
   .faqGrid{grid-template-columns:1fr;}
-  h1{font-size:34px;}
+  .formGrid{grid-template-columns:1fr;}
+  .whyTitle{ padding-right:0; }
+  .passStamp{ position:static; display:inline-block; margin:0 0 12px; transform: rotate(10deg); }
 }
 </style>
 </head>
@@ -397,9 +591,7 @@ h1{
       <img src="Northfield-Assets-logo.png" class="logo" alt="Northfield Assets">
 
       <div class="contactLine">
-        <span>Charlotte, NC</span>
-        <span>•</span>
-        <a href="tel:+17045551234">+1 (704) 555-1234</a>
+        <a href="tel:+16193198957">+1 (619) 319-8957</a>
         <span>•</span>
         <a href="mailto:hello@northfieldassets.net">hello@northfieldassets.net</a>
       </div>
@@ -407,18 +599,24 @@ h1{
 
     <div class="ctaRow">
       <a href="mailto:hello@northfieldassets.net" class="btn">Email</a>
-      <a href="https://calendly.com/YOUR-LINK/15min" class="btn btnPrimary" target="_blank" rel="noreferrer">Book 15 min</a>
+      <button class="btn btnPrimary" id="openBooking" type="button">Book 15 min</button>
     </div>
   </div>
 
-  <div class="heroBanner" role="img" aria-label="Property exterior"></div>
-
-  <h1>Proactive visibility, not reactive surprises.</h1>
-  <p class="heroSub">
-    Northfield Assets provides routine independent walkthroughs so you know what is happening on site between visits, inspections, and owner scrutiny.
-  </p>
-  <div class="heroCallout">
-    Know what is happening across your properties, without being everywhere yourself.
+  <div class="heroBanner" role="img" aria-label="Property exterior">
+    <div class="heroOverlay">
+      <div class="heroCard">
+        <h1 class="heroTitle">
+          Proactive visibility, <span class="green">not reactive surprises.</span>
+        </h1>
+        <p class="heroWhat">
+          Routine walkthroughs that document common-area conditions between visits.
+        </p>
+        <p class="heroSub">
+          You get consistent evidence of what was observed, so small issues are seen early instead of surfacing at the worst moment.
+        </p>
+      </div>
+    </div>
   </div>
 
   <div class="section">
@@ -440,7 +638,8 @@ h1{
           <div class="clipboard3d" aria-label="Clipboard checklist">
             <div class="clipTop"></div>
             <div class="paper">
-              <div class="paperTitle">Which areas would you document?</div>
+              <div class="paperTitle">Examples of areas commonly documented</div>
+
               <ul class="paperList">
                 <li><span class="blackCheck" aria-hidden="true">✓</span><span>Exterior lighting outages</span></li>
                 <li><span class="blackCheck" aria-hidden="true">✓</span><span>Emerging trip hazards or wear</span></li>
@@ -449,34 +648,36 @@ h1{
                 <li><span class="blackCheck" aria-hidden="true">✓</span><span>Parking area deterioration</span></li>
                 <li><span class="blackCheck" aria-hidden="true">✓</span><span>Graffiti or recurring cosmetic issues</span></li>
                 <li><span class="blackCheck" aria-hidden="true">✓</span><span>Common area presentation and upkeep</span></li>
+                <li><span class="blackCheck" aria-hidden="true">✓</span><span>Broken signage, peeling paint, or damaged fixtures</span></li>
+                <li><span class="blackCheck" aria-hidden="true">✓</span><span>Blocked exits / storage creep in corridors</span></li>
+                <li><span class="blackCheck" aria-hidden="true">✓</span><span>Overflowing dumpsters or pest-attracting conditions</span></li>
+                <li><span class="blackCheck" aria-hidden="true">✓</span><span>Fence / gate issues and access points left unsecured</span></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <div>
-        <div class="whyPaperWrap">
-          <div class="whyPaper">
-            <div class="passStamp" aria-hidden="true">PASS</div>
-            <div class="whyTitle">Why it matters</div>
+      <div class="whyWrap" id="whyMatters">
+        <div class="passStamp" aria-hidden="true">PASS</div>
+        <h3 class="whyTitle">Why it matters</h3>
 
-            <ul class="whyList">
-              <li>
-                <strong>Reduce blind spots</strong>
-                Between visits, conditions drift quietly. Consistent visibility catches issues before they stack up.
-              </li>
-              <li>
-                <strong>Fewer last minute scrambles</strong>
-                Evidence helps teams address small issues early instead of rushing when scrutiny hits.
-              </li>
-              <li>
-                <strong>Clearer oversight</strong>
-                Timestamped documentation supports cleaner owner updates and faster internal decisions.
-              </li>
-            </ul>
-          </div>
-        </div>
+        <ul class="whyList">
+          <li class="whyItem">
+            <p class="whyHead">Reduce blind spots</p>
+            <p class="whyBody">Conditions drift quietly between visits. Routine walkthroughs help you catch small issues early.</p>
+          </li>
+
+          <li class="whyItem">
+            <p class="whyHead">Fewer last-minute scrambles</p>
+            <p class="whyBody">Documentation supports earlier action instead of rushing when inspections, owners, or investors show up.</p>
+          </li>
+
+          <li class="whyItem">
+            <p class="whyHead">Clearer oversight</p>
+            <p class="whyBody">Timestamped photos create a clean record that improves internal decisions and owner updates.</p>
+          </li>
+        </ul>
       </div>
 
     </div>
@@ -493,7 +694,7 @@ h1{
 
       <div class="faqItem">
         <strong>Where does the documentation live?</strong>
-        <p>Photos are stored consistently in a shared folder structure so managers can reference current condition and trends.</p>
+        <p>Photos are stored consistently in a shared folder structure so managers can reference condition over time.</p>
       </div>
 
       <div class="faqItem">
@@ -519,11 +720,180 @@ h1{
   </div>
 
   <div class="footer">
-    <div><strong style="color:rgba(232,238,246,0.92);">Charlotte, NC</strong></div>
-    <div><a href="tel:+17045551234">+1 (704) 555-1234</a></div>
+    <div><a href="tel:+16193198957">+1 (619) 319-8957</a></div>
     <div><a href="mailto:hello@northfieldassets.net">hello@northfieldassets.net</a></div>
   </div>
 
 </div>
+
+<!-- Booking Modal (Netlify Form) -->
+<div class="modalBackdrop" id="bookingModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modalHeader">
+      <h3 id="modalTitle">Request a 15-minute call</h3>
+      <button class="iconBtn" id="closeBooking" type="button" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modalBody">
+      <form
+        id="bookingForm"
+        name="booking-request"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <!-- Required by Netlify -->
+        <input type="hidden" name="form-name" value="booking-request">
+
+        <!-- Honeypot -->
+        <p style="display:none;">
+          <label>Don’t fill this out: <input name="bot-field"></label>
+        </p>
+
+        <div class="formGrid">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" autocomplete="organization" required>
+          </div>
+
+          <div class="field">
+            <label for="date">Preferred date</label>
+            <input id="date" name="preferred_date" type="date" required>
+          </div>
+
+          <div class="field">
+            <label for="time">Preferred time</label>
+            <input id="time" name="preferred_time" type="time" required>
+          </div>
+
+          <div class="field" style="grid-column:1/-1;">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Anything we should know about your portfolio, locations, or timing?"></textarea>
+          </div>
+        </div>
+
+        <div class="modalActions">
+          <button class="btn" type="button" id="cancelBooking">Cancel</button>
+          <button class="btn btnPrimary" type="submit" id="submitBooking">Send request</button>
+        </div>
+
+        <div class="notice">
+          Submissions go directly to <strong>Netlify Forms</strong>. You can enable email notifications from your Netlify dashboard.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Fly-in animation for "Why it matters" when it enters viewport */
+(function(){
+  const el = document.getElementById('whyMatters');
+  if (!el) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        el.classList.add('isVisible');
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  obs.observe(el);
+})();
+
+/* Modal open/close + Netlify form submit */
+(function(){
+  const openBtn = document.getElementById('openBooking');
+  const modal = document.getElementById('bookingModal');
+  const closeBtn = document.getElementById('closeBooking');
+  const cancelBtn = document.getElementById('cancelBooking');
+  const form = document.getElementById('bookingForm');
+  const submitBtn = document.getElementById('submitBooking');
+
+  function openModal(){
+    modal.classList.add('isOpen');
+    modal.setAttribute('aria-hidden', 'false');
+
+    // default date to tomorrow if empty
+    const dateEl = document.getElementById('date');
+    if (dateEl && !dateEl.value){
+      const d = new Date();
+      d.setDate(d.getDate() + 1);
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      dateEl.value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    setTimeout(() => document.getElementById('name')?.focus(), 50);
+  }
+
+  function closeModal(){
+    modal.classList.remove('isOpen');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  cancelBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && modal.classList.contains('isOpen')) closeModal();
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+    }
+
+    try{
+      const formData = new FormData(form);
+
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+
+      if (submitBtn){
+        submitBtn.textContent = "Sent ✓";
+      }
+
+      setTimeout(() => {
+        form.reset();
+        closeModal();
+        if (submitBtn){
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send request";
+        }
+      }, 700);
+
+    }catch(err){
+      alert("Sorry — something went wrong. Please email hello@northfieldassets.net.");
+      if (submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send request";
+      }
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
